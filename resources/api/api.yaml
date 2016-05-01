@@ -1,0 +1,77 @@
+swagger: '2.0'
+
+# basic meta information
+info:
+  title: Friboo Hello World Full
+  version: '1.0'
+  description: Full examlple of using Friboo framework features
+
+externalDocs:
+  description: STUPS overview
+  url: http://zalando-stups.github.io/
+
+# technical configuration
+basePath: /
+produces:
+- application/json
+consumes:
+- application/json
+
+security:
+  - oauth2: [uid]
+
+paths:
+
+  '/':
+    get:
+      summary: Application root
+      operationId: org.zalando.stups.friboo.system.http/redirect-to-swagger-ui
+      responses:
+        default:
+          description: "Redirects to /ui/"
+
+  '/hello/{name}':
+    get:
+      summary: Says hello
+      description: |
+        Says hello personally to {name}
+      parameters:
+        - $ref: '#/parameters/Name'
+      tags:
+        - General
+      operationId: "friboo-hello-world-full.api/get-hello"
+      responses:
+        200:
+          description: Hello is said
+        default:
+          $ref: '#/responses/Error'
+
+parameters:
+  Name:
+    name: name
+    in: path
+    type: string
+    description: ID of the resource type
+
+responses:
+  Error:
+    description: An error occured.
+    schema:
+      $ref: '#/definitions/Error'
+
+definitions:
+  Error:
+    type: object
+    properties:
+      message:
+        type: string
+    example:
+      message: Internal Server Error
+
+securityDefinitions:
+  oauth2:
+    type: oauth2
+    flow: implicit
+    authorizationUrl: https://example.com/oauth2/dialog
+    scopes:
+      uid: Unique identifier of the user accessing the service.
