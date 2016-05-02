@@ -4,17 +4,21 @@ Example project featuring all [Friboo](https://github.com/zalando-stups/friboo) 
 
 ## Roadmap
 
+We want to make this possible:
+
 ```
 lein new friboo my-new-project <OPTIONS>
 ```
 
 OPTIONS are optional and compatible with each other:
 
-* +api 
-* +db
+* +api (based on [swagger1st](https://github.com/sarnowski/swagger1st))
+* +db (PostgreSQL)
 * +midje (to replace clojure.test, which is the default)
+* +oauth2-tokens (based on [tokens](https://github.com/zalando-stups/tokens))
+* +cron
 
-? How do we enable we UI? Should it be a API-like component that responds with HTML?
+? How do we enable UI? Should it be a API-like component that responds with HTML?
 
 logging setup (by default DEBUG is not shown for project namespaces)
 
