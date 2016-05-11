@@ -14,9 +14,10 @@
                         [sql/default-db-configuration
                          api/default-http-configuration
                          default-configuration])
-        system        (system/http-system-map configuration
-                                              api/map->API [])] ;:db
-    ;:db (sql/map->DB {:configuration (:db configuration)})
+        system        (system/http-system-map
+                        configuration
+                        api/map->API [:db]
+                        :db (sql/map->DB {:configuration (:db configuration)}))]
 
     (system/run configuration system)))
 

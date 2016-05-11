@@ -26,7 +26,9 @@ logging setup (by default DEBUG is not shown for project namespaces)
 
 ? [Friboo] Separate HTTP and API components
 
-? [Friboo] Use namespaced keywords for system components (:mgmt-http, :metrics, :audit-log) 
+? [Friboo] Use namespaced keywords for system components (:mgmt-http, :metrics, :audit-log)
+ 
+? Add database creation as the 0th migration step
 
 ## Credits
 

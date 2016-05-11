@@ -7,7 +7,7 @@
 (def default-db-configuration
   {:db-classname   "org.postgresql.Driver"
    :db-subprotocol "postgresql"
-   :db-subname     "//localhost:5432/hello"
+   :db-subname     "//docker:5432/postgres"
    :db-user        "postgres"
    :db-password    "postgres"
    :db-init-sql    "SET search_path TO fh_data, public"})
