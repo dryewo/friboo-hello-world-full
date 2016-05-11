@@ -44,7 +44,7 @@
     {:status 204}))
 
 (defn delete-greeting-template
-  [{:keys [greeting_id greeting_template] :as params} request db]
+  [{:keys [greeting_id] :as params} request db]
   (wrap-handler
     (db/cmd-delete-greeting! {:id greeting_id} {:connection db})
     {:status 204}))
