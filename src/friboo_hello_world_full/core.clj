@@ -2,6 +2,7 @@
   (:require [org.zalando.stups.friboo.config :as config]
             [org.zalando.stups.friboo.system :as system]
             [org.zalando.stups.friboo.log :as log]
+            [friboo-hello-world-full.jobs :as jobs]
             [friboo-hello-world-full.db :as sql]
             [friboo-hello-world-full.api :as api])
   (:gen-class))
@@ -10,14 +11,15 @@
   "Initializes and starts the whole system."
   [default-configuration]
   (let [configuration (config/load-configuration
-                        (system/default-http-namespaces-and :db)
+                        (system/default-http-namespaces-and :db :jobs)
                         [sql/default-db-configuration
                          api/default-http-configuration
                          default-configuration])
         system        (system/http-system-map
                         configuration
                         api/map->API [:db]
-                        :db (sql/map->DB {:configuration (:db configuration)}))]
+                        :db (sql/map->DB {:configuration (:db configuration)})
+                        :jobs (jobs/map->Jobs {:configuration (:jobs configuration)}))]
 
     (system/run configuration system)))
 
