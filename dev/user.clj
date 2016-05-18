@@ -34,10 +34,18 @@
   development."
   nil)
 
+(defn slurp-if-exists [file]
+  (when (.exists (clojure.java.io/as-file file))
+    (slurp file)))
+
+(defn load-dev-config [file]
+  (clojure.edn/read-string (slurp-if-exists file)))
+
 (defn start
   "Starts the system running, sets the Var #'system."
   [extra-config]
-  (alter-var-root #'system (constantly (core/run (merge {:system-log-level "INFO"}
+  (alter-var-root #'system (constantly (core/run (merge (load-dev-config "./dev-config.edn")
+                                                        {:system-log-level "INFO"}
                                                         extra-config)))))
 
 (defn stop
