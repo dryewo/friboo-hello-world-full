@@ -30,6 +30,9 @@ logging setup (by default DEBUG is not shown for project namespaces)
  
 ? Add database creation as the 0th migration step
 
+Explain how configuration is compiled from different sources:
+    environment, dev-config.edn, profiles.clj, components' default configs
+
 ## Credits
 
 Based on [Essentials](https://github.com/zalando-stups/essentials) code.
